@@ -4,17 +4,9 @@
 
 This repository contains the **research and development** of a project that aims to **map the current state of the public goods ecosystem** and contribute with possible enhancements to make it more effective and sustainable.
 
-### What are Public Goods?
+### My Goal
 
-Think of public goods like roads, parks, or open-source software - things that benefit everyone but are often underfunded because it's hard to charge people for using them. In the blockchain world, this includes things like:
-- Open-source protocols and tools
-- Developer infrastructure 
-- Educational resources
-- Security research
-
-### My Mission
-
-I'm exploring **RetroPGF (Retroactive Public Goods Funding)** - a innovative funding mechanism that rewards contributors *after* they've already created value, rather than betting on what they might create in the future.
+I'm exploring **RetroPGF (Retroactive Public Goods Funding)**, a creative funding method that rewards people after they've made valuable contributions. My goal is to enhance this system to be as automated, transparent, cost-effective, and data-driven as possible. This way, other DAOs and projects can begin compensating their open-source contributors more efficiently. Although I recognize that not every impact area can fully adopt these ideas, there's still a lot of room to make the current system better.
 
 ## 🔬 Current Project Infrastructure
 
@@ -22,51 +14,29 @@ I'm exploring **RetroPGF (Retroactive Public Goods Funding)** - a innovative fun
 
 ```
 📁 problenm_space_exploration/
-├── 📄 interviews_public_notes.md      # Stakeholder interviews & insights
-├── 📄 public_notes_on_studies.md      # Research methodology & findings  
+├── 📄 interviews_public_notes.md      # Stakeholder informal interviews and insights
+├── 📄 public_notes_on_studies.md      
 ├── 📁 images/
-│   └── 🖼️ summary_programs_table.GIF   # Visual program summaries
 └── 📁 other_resources/
-    └── 📄 filecoin_round2_extra_info   # Case study data
+    └── 📄 filecoin_round2_extra_info   
 ```
 
 ### What I've Researched So Far
 
-- **🏛️ Optimism Ecosystem**: Understanding their grant infrastructure including Growth Grants, Milestones Council, and RetroPGF programs
-- **💾 Filecoin Network**: Analysis of their evaluation processes using ~50 reviewers and automation techniques  
-- **📊 Open Source Observer (OSO)**: Tools and methodologies for tracking public project metrics
-- **⚙️ Automation Frameworks**: Exploring "vanilla metrics" that can be calculated using only on-chain and public data
+- **🔴 Optimism Ecosystem** 
+- **💾 Filecoin Network**
+- **📊 Open Source Observer (OSO)**
+- **🌱 Gitcoin GG23**
+- **💛 Celo** 
 
-### Key Research Insights
+All the resources can be found on the issue [Reading List - RetroFunding](https://github.com/stefi-says/onchain_recurrent_rewards/issues/6)
 
-My interviews have revealed several important findings:
-- **Application costs** are currently one of the biggest barriers in RetroPGF programs
-- **Metric standardization** could significantly reduce evaluation workload
-- **Universal metrics** (fees collected, TVL, token locks) could enable cross-ecosystem frameworks
-- **Automated evaluation** could make programs more scalable and fair
 
-## 🎯 Project Goals
-
-1. **Map the Ecosystem**: Document current RetroPGF programs, their strengths, and pain points
-2. **Identify Inefficiencies**: Find what's preventing RetroPGF rounds from being optimal and successful  
-3. **Develop Solutions**: Create frameworks and tools to enhance the ecosystem
-4. **Enable Automation**: Build systems that reduce manual evaluation overhead
-
-## 🚀 Related Work
+## 🚀 Project Roadmap
 
 This research is part of the broader **RetroPGF Ecosystem and Enhancements** initiative. You can track my progress and contribute to discussions in my GitHub project:
 
 **🔗 [RetroPGF Ecosystem and Enhancements Project Board](https://github.com/users/stefi-says/projects/4)**
-
-## 🤝 Contributing
-
-This is an evolving research project! If you're working in the public goods space or have insights about RetroPGF programs, I'd love to hear from you.
-
-### Ways to Contribute:
-- Share your experience with RetroPGF programs
-- Suggest new research directions
-- Contribute data or case studies
-- Help with analysis and documentation
 
 ## 🧠 Interactive Learning Resources
 
@@ -80,16 +50,21 @@ I've compiled all my research resources into an interactive NotebookLM that incl
 
 *This notebook is perfect for anyone interested in the RetroPGF space who wants to fast-forward their understanding of the topic through multiple learning modalities.*
 
-## 📚 Background Reading
+## 🤝 Contributing
 
-To understand more about the programs I'm studying:
-- [Optimism RetroPGF Documentation](https://github.com/ethereum-optimism/Retro-Funding)
-- [Filecoin RetroPGF](https://fil-retropgf.notion.site/)
-- [Open Source Observer Blog](https://docs.opensource.observer/blog/s7-developer-tooling/)
+This is an evolving research project! If you're working in the public goods space or have insights about RetroPGF programs, I'd love to hear from you.
 
-## 📧 Contact
+### Ways to Contribute:
+- Share your experience with RetroPGF programs
+- Suggest new research directions
+- Contribute data or case studies
+- Help with analysis and documentation
+
+
+## 📧 Contact  
 
 This research is conducted with transparency and community input in mind. All notes and findings are made public to benefit the entire ecosystem.
+If you want to chat directly with me, you can find me on Twitter [@hey_stefi_](https://x.com/hey_stefi_)
 
 ---
 
