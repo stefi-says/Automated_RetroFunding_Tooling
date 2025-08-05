@@ -1,0 +1,176 @@
+                                                                                                @startuml "MERIter ERD"
+                                                                                                title "MERIter Entity Relationship Diagram (ERD)"
+                                                                                                ' !pragma layout smetana
+
+                                                                                                <style>
+                                                                                                classDiagram {
+                                                                                                    class {
+                                                                                                        BackgroundColor #55555511
+                                                                                                    }
+                                                                                                    class, arrow, entity, note {
+                                                                                                        ' LineColor white
+                                                                                                        ' BackgroundColor white
+                                                                                                        ' BorderColor white
+                                                                                                        ' FontColor white
+                                                                                                    }
+                                                                                                }
+                                                                                                spot {
+                                                                                                    spotEntity, spotDataClass {
+                                                                                                        ' LineColor white
+                                                                                                        ' BackgroundColor white
+                                                                                                        ' BorderColor white
+                                                                                                        ' FontColor white
+                                                                                                    }
+                                                                                                }
+                                                                                                </style>
+
+                                                                                                'skinparam linetype ortho
+
+                                                                                                package "IE Governance (meta)" as IEGovernance {
+                                                                                                    entity ObjectivesDesigner {
+                                                                                                        <b>DAO strategy</b>
+                                                                                                        <i>example: Optimism 2025 Missions</i> ## check this info
+                                                                                                    }
+
+                                                                                                    entity ScopesDesigner {
+                                                                                                        <b>DAO council</b>
+                                                                                                        <i>example: steward </i> ## check this info
+                                                                                                    }
+                                                                                                    entity MeasurementDesigner {
+                                                                                                        <b>DAO grants comittee</b>
+                                                                                                        <i>example: Grants Council and Badge Holders in Optimism</i>
+                                                                                                        <i>example: Rounds owners in Gitcoin</i> ##TODO get the name of the public goods project in Celo
+                                                                                                    }
+                                                                                                    entity EvaluationDesigner {
+                                                                                                        <b>DAO grants comittee</b>
+                                                                                                    }
+                                                                                                    entity RewardDesigner {
+                                                                                                        <b>DAO grants comittee</b>
+                                                                                                    }
+                                                                                                    entity Treasury {
+                                                                                                        <b>Reward pool</b>
+                                                                                                        <i>example: Grants budget from sequencer fees</i>
+                                                                                                        <i>example: Foundations Donations</i>
+                                                                                                    }
+
+                                                                                                    ScopesDesigner -r[hidden]-> MeasurementDesigner
+                                                                                                    MeasurementDesigner -r[hidden]-> EvaluationDesigner
+                                                                                                    EvaluationDesigner -r[hidden]-> RewardDesigner
+                                                                                                    RewardDesigner -r[hidden]-> Treasury
+
+                                                                                                    ObjectivesDesigner "1" --> "1" ScopesDesigner : orients
+                                                                                                    ObjectivesDesigner "1" --> "1" MeasurementDesigner : orients
+                                                                                                    ObjectivesDesigner "1" --> "1" EvaluationDesigner : orients
+                                                                                                    ObjectivesDesigner "1" --> "1" RewardDesigner : orients
+                                                                                                }
+
+                                                                                                package Impact {
+                                                                                                    entity ImpactProject {
+                                                                                                        <b>Grantees</b>
+                                                                                                        <i>example: Community and DAOs members on Celo</i>
+                                                                                                        <i>example: OSS Libraries and other projects on Optimism</i>
+                                                                                                        <i>example: Top 30 projects in GG23</i>
+                                                                                                    }
+                                                                                                    entity ImpactWork
+                                                                                                    dataclass ImpactScope {
+                                                                                                        <b>Achievements on a given period</b>
+                                                                                                        <i>example: Communities contributions in Celo</i>
+                                                                                                        <i>example: Onchain monetary volumes in Optimism</i>
+                                                                                                    }
+                                                                                                    dataclass ImpactClaim {
+                                                                                                        <b>Proof of Impact</b>
+                                                                                                        <i>example:Actual generated fees in Optimism</i>
+                                                                                                        <i>example:Prints of Forum posts and Discord messages</i>
+                                                                                                        <i>example:Actual generated fees in GG23</i>
+
+                                                                                                    }
+                                                                                                    note left of ImpactClaim
+                                                                                                        Vehicle for ImpactContributor
+                                                                                                        entities to communicate
+                                                                                                        outcomes to Measurers
+                                                                                                    end note
+
+                                                                                                    entity ImpactContributor {
+                                                                                                    }
+
+                                                                                                    ImpactOrganization "1" -d-> "*" ImpactProject : facilitates
+                                                                                                    ImpactProject "1" -d-> "*" ImpactScope : divides\ninto
+                                                                                                    ImpactScope "1" -d-> "*" ImpactClaim : contains
+                                                                                                    ImpactContributor "*" -u-> "*" ImpactClaim : claims
+                                                                                                    ImpactContributor "*" --> "*" ImpactWork : > contributes
+                                                                                                    ImpactContributor::workDecisionPolicy "1" -l-> "*" ImpactWork : > gates
+                                                                                                    ImpactClaim "*" --> "*" ImpactWork : > represents
+                                                                                                    ImpactContributor "*" -up--> "*" ImpactOrganization : > belongs to
+                                                                                                }
+
+                                                                                                package Measure { 
+                                                                                                    dataclass Measurement {
+                                                                                                        <b>Quantifiable or a qualitative metric</b>
+                                                                                                        <i>example: TVL, fees generated, counts of transactions on Optimism</i>
+                                                                                                        <i>example: retention rate of voters, consistence participation in rounds in GG23</i>
+                                                                                                        <i>example: community contributions on DAO forums in Celo</i>
+                                                                                                    }
+                                                                                                    entity Measurer
+
+                                                                                                    ImpactClaim "*" --> "*" Measurer : "submitted to\n(or discovered by)    "
+
+                                                                                                    Measurer "1" --> "*" Measurement : takes
+                                                                                                    Measurement "*" -l-> "1" ImpactClaim : measures
+                                                                                                    Measurement::entity "1" --> "1" ImpactContributor : credits
+                                                                                                }
+
+                                                                                                package Evaluate {
+                                                                                                    dataclass EvaluationResult {
+                                                                                                    }
+                                                                                                    entity Evaluator {
+                                                                                                        <b>Actor that judges the measurement</b>        
+                                                                                                        <i>example: OSO models in Optimism</i>
+                                                                                                        <i>example: GG23 judges</i>
+                                                                                                        <i>example: Badge Holders and experts in Celo and Optimism</i>
+                                                                                                    }
+
+                                                                                                    EvaluationResult "1" -l-> "*" Measurement : evaluates
+                                                                                                    Evaluator "1" -d-> "*" EvaluationResult : "calculates    "
+                                                                                                    EvaluationResult "*" -u-> "*" Evaluator : "cascaded\nto"
+                                                                                                }
+
+                                                                                                package Reward {
+                                                                                                    entity RewardCalculator {
+                                                                                                        <b>Actor or system that fits the EvaluationResult with the available rewards</b>
+                                                                                                        <i>example: OSO models scores for each project to reward pool</i>
+                                                                                                        <i>example: Proportional votes distribution to reward pool in Fil RetroPGF</i> ###
+                                                                                                    }
+                                                                                                    dataclass RewardAllocation {
+                                                                                                        <b>Reward distribution mechanism</b>
+                                                                                                        <b>Atlas</b>  ### verify this info
+                                                                                                        <b>example: Drips protocol on Fil RetroPGF round 2</b>
+                                                                                                        <i>example: multisig onchain contracts</i> ###
+                                                                                                    }
+                                                                                                    entity RewardDistributor
+
+                                                                                                    RewardCalculator "1" -d-> "*" RewardAllocation : calculates
+                                                                                                    RewardAllocation "*" -r-> "1" RewardDistributor : authorizes
+                                                                                                }
+
+                                                                                                Impact -r[hidden]--> Measure
+                                                                                                Measure -r[hidden]--> Evaluate
+                                                                                                Evaluate -r[hidden]--> Reward
+
+                                                                                                ScopesDesigner "1" --> "*" ImpactScope : designs
+                                                                                                MeasurementDesigner "1" --> "*" Measurer : designs
+                                                                                                EvaluationDesigner "1" --> "*" Evaluator : designs
+                                                                                                RewardDesigner "1" --> "1" RewardCalculator : designs
+
+                                                                                                entity FundingSource
+                                                                                                FundingSource "*" --> "1" Treasury : funds
+                                                                                                Treasury "1" --> "1" RewardDistributor : funds
+
+                                                                                                Measurement "*" --> "*" Evaluator : "ingested     \nby     "
+                                                                                                EvaluationResult "1" --> "1" RewardCalculator : steers >
+                                                                                                RewardDistributor "1" ---> "*" ImpactContributor : > rewards
+                                                                                                RewardDistributor "1" ---> "*" ImpactContributor::workDecisionPolicy : > influences
+
+                                                                                                entity ExternalWorld
+                                                                                                ExternalWorld "1" -u-> "*" RewardAllocation : values
+
+                                                                                                @enduml
