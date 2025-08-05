@@ -1,4 +1,5 @@
 # Impact Evaluator Calculator (IEC)
+![Impact Evaluator Calculator](./assets/IECalculatorPIc.png)
 
 ## Overview
 The Impact Evaluator Calculator is a sophisticated tool designed to help Impact Evaluation (IE) managers analyze and simulate the costs of running different IE designs. This interactive web application provides a visual and intuitive interface for calculating, analyzing, and optimizing the costs associated with Impact Evaluation projects.
