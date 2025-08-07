@@ -3,10 +3,10 @@ import ReactFlow, {
   Background, 
   Controls, 
   MiniMap,
+  Handle,
   Node,
   Edge,
-  Position,
-  Handle
+  Position
 } from 'reactflow';
 
 const getEntityColor = (intensity: number) => {
@@ -28,13 +28,12 @@ const getEntityColor = (intensity: number) => {
       stroke: '#3b82f6',
       text: '#1e40af'
     };
-  } else {
-    return {
-      fill: '#f8fafc',
-      stroke: '#64748b',
-      text: '#475569'
-    };
   }
+  return {
+    fill: '#f8fafc',
+    stroke: '#64748b',
+    text: '#475569'
+  };
 };
 
 interface ErdNodeData {
@@ -109,7 +108,7 @@ interface SectionNodeData {
 const SectionNode = ({ data }: { data: SectionNodeData }) => {
   const { section, intensity } = data;
   
-  // Get colors based on cost intensity
+  // Get colors based on intensity
   const getColors = (intensity: number) => {
     if (intensity > 0.7) {
       return {
@@ -164,25 +163,50 @@ interface ERDDiagramProps {
   calculatedCosts: {
     sections: any;
     totalSystem: number;
+    totalHours: number;
   };
+  visualizationMode: 'cost' | 'hours';
 }
 
-const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
-  // Get cost intensity for color coding
-  const getCostIntensity = (sectionKey: string, componentKey?: string) => {
+const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts, visualizationMode }) => {
+  console.log('ERDDiagram render - visualizationMode:', visualizationMode);
+  // Get intensity for color coding based on visualization mode
+  const getIntensity = (sectionKey: string, componentKey?: string) => {
     const sectionData = calculatedCosts.sections[sectionKey];
     if (!sectionData) return 0;
 
-    if (componentKey) {
-      const componentCost = sectionData.components[componentKey] || 0;
-      const maxCost = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => 
-        Math.max(...Object.values(s.components).map(Number))
-      ));
-      return maxCost > 0 ? componentCost / maxCost : 0;
+    if (visualizationMode === 'cost') {
+      if (componentKey) {
+        const componentCost = sectionData.components[componentKey] || 0;
+        const maxCost = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => 
+          Math.max(...Object.values(s.components).map(Number))
+        ));
+        const intensity = maxCost > 0 ? componentCost / maxCost : 0;
+        console.log(`Cost mode - ${componentKey}: $${componentCost} / $${maxCost} = ${intensity}`);
+        return intensity;
+      } else {
+        const sectionTotal = sectionData.total || 0;
+        const maxSectionCost = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => s.total));
+        const intensity = maxSectionCost > 0 ? sectionTotal / maxSectionCost : 0;
+        console.log(`Cost mode - Section ${sectionKey}: $${sectionTotal} / $${maxSectionCost} = ${intensity}`);
+        return intensity;
+      }
     } else {
-      const sectionTotal = sectionData.total || 0;
-      const maxSectionCost = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => s.total));
-      return maxSectionCost > 0 ? sectionTotal / maxSectionCost : 0;
+      if (componentKey) {
+        const componentHours = sectionData.componentHours[componentKey] || 0;
+        const maxHours = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => 
+          Math.max(...Object.values(s.componentHours || {}).map(Number))
+        ));
+        const intensity = maxHours > 0 ? componentHours / maxHours : 0;
+        console.log(`Hours mode - ${componentKey}: ${componentHours}h / ${maxHours}h = ${intensity}`);
+        return intensity;
+      } else {
+        const sectionHours = sectionData.totalHours || 0;
+        const maxSectionHours = Math.max(...Object.values(calculatedCosts.sections).map((s: any) => s.totalHours || 0));
+        const intensity = maxSectionHours > 0 ? sectionHours / maxSectionHours : 0;
+        console.log(`Hours mode - Section ${sectionKey}: ${sectionHours}h / ${maxSectionHours}h = ${intensity}`);
+        return intensity;
+      }
     }
   };
 
@@ -300,7 +324,7 @@ const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
         },
         data: {
           section: paddedSection,
-          intensity: getCostIntensity(section.id)
+          intensity: getIntensity(section.id)
         },
         draggable: false,
         selectable: false,
@@ -318,7 +342,7 @@ const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
           data: {
             label: entity.name,
             type: entity.type,
-            intensity: getCostIntensity(section.id, entity.id)
+            intensity: getIntensity(section.id, entity.id)
           }
         });
       });
@@ -386,7 +410,7 @@ const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
     });
 
     return { nodes, edges };
-  }, [calculatedCosts]);
+  }, [calculatedCosts, visualizationMode]);
 
   // Default edge style
   const defaultEdgeOptions = {
@@ -421,7 +445,7 @@ const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
         onEdgeClick={onEdgeClick}
         onNodeDragStart={onNodeDragStart}
         onNodeDragStop={onNodeDragStop}
-        nodesDraggable={true}
+
         nodesConnectable={false}
         elementsSelectable={true}
         panOnDrag={true}
@@ -443,19 +467,21 @@ const ERDDiagram: React.FC<ERDDiagramProps> = ({ calculatedCosts }) => {
 
       {/* Legend */}
       <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 border border-slate-200">
-        <h3 className="text-sm font-semibold text-slate-900 mb-2">Cost Intensity</h3>
+        <h3 className="text-sm font-semibold text-slate-900 mb-2">
+          {visualizationMode === 'cost' ? 'Cost Intensity' : 'Hours Intensity'}
+        </h3>
         <div className="space-y-2">
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 rounded bg-blue-200 border border-blue-300"></div>
-            <span className="text-xs text-slate-600">Low Cost</span>
+            <span className="text-xs text-slate-600">Low {visualizationMode === 'cost' ? 'Cost' : 'Hours'}</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 rounded bg-yellow-200 border border-yellow-400"></div>
-            <span className="text-xs text-slate-600">Medium Cost</span>
+            <span className="text-xs text-slate-600">Medium {visualizationMode === 'cost' ? 'Cost' : 'Hours'}</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 rounded bg-red-200 border border-red-400"></div>
-            <span className="text-xs text-slate-600">High Cost</span>
+            <span className="text-xs text-slate-600">High {visualizationMode === 'cost' ? 'Cost' : 'Hours'}</span>
           </div>
         </div>
       </div>

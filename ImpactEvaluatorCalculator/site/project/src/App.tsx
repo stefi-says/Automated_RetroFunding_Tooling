@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Calculator, DollarSign, TrendingUp, Eye, EyeOff } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Calculator, TrendingUp, Eye } from 'lucide-react';
 import { ReactFlowProvider } from 'reactflow';
 import 'reactflow/dist/style.css';
 import ERDDiagram from './components/ERDDiagram';
@@ -8,40 +8,56 @@ import CostSummary from './components/CostSummary';
 
 function App() {
   const [costData, setCostData] = useState<any>({});
-  const [showCalculator, setShowCalculator] = useState(false);
+  const [visualizationMode, setVisualizationMode] = useState<'cost' | 'hours'>('cost');
 
   const calculatedCosts = useMemo(() => {
     const calculations: any = {};
     let totalSystemCost = 0;
+    let totalSystemHours = 0;
 
     // Calculate costs for each section
     Object.entries(costData).forEach(([sectionKey, sectionData]: [string, any]) => {
       let sectionTotal = 0;
+      let sectionHours = 0;
       const componentCosts: any = {};
+      const componentHours: any = {};
 
       Object.entries(sectionData).forEach(([componentKey, componentData]: [string, any]) => {
         let componentCost = 0;
+        let componentHoursValue = 0;
         
         if (componentData.total_cost) {
           componentCost = componentData.total_cost;
         } else if (componentData.total_hours && componentData.hourly_rate) {
-          componentCost = componentData.total_hours * componentData.hourly_rate;
+          componentHoursValue = componentData.total_hours;
+          componentCost = componentHoursValue * componentData.hourly_rate;
+        }
+        
+        // Always track hours if available
+        if (componentData.total_hours) {
+          componentHoursValue = componentData.total_hours;
         }
         
         componentCosts[componentKey] = componentCost;
+        componentHours[componentKey] = componentHoursValue;
         sectionTotal += componentCost;
+        sectionHours += componentHoursValue;
       });
 
       calculations[sectionKey] = {
         components: componentCosts,
-        total: sectionTotal
+        componentHours: componentHours,
+        total: sectionTotal,
+        totalHours: sectionHours
       };
       totalSystemCost += sectionTotal;
+      totalSystemHours += sectionHours;
     });
 
     return {
       sections: calculations,
-      totalSystem: totalSystemCost
+      totalSystem: totalSystemCost,
+      totalHours: totalSystemHours
     };
   }, [costData]);
 
@@ -71,26 +87,16 @@ function App() {
                   ${calculatedCosts.totalSystem.toLocaleString()}
                 </div>
               </div>
-              <button
-                onClick={() => setShowCalculator(!showCalculator)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  showCalculator
-                    ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
-                }`}
-              >
-                {showCalculator ? <EyeOff className="w-4 h-4" /> : <Calculator className="w-4 h-4" />}
-                <span>{showCalculator ? 'Hide Calculator' : 'Show Calculator'}</span>
-              </button>
+
             </div>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* ERD Diagram */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="p-6 border-b border-slate-200">
                 <div className="flex items-center space-x-2">
@@ -105,39 +111,41 @@ function App() {
               </div>
               <div className="p-6">
                 <ReactFlowProvider>
-                  <ERDDiagram calculatedCosts={calculatedCosts} />
+                  <ERDDiagram calculatedCosts={calculatedCosts} visualizationMode={visualizationMode} />
                 </ReactFlowProvider>
               </div>
             </div>
           </div>
 
           {/* Right Panel */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {/* Cost Summary */}
-            <CostSummary calculatedCosts={calculatedCosts} />
+            <CostSummary 
+              calculatedCosts={calculatedCosts} 
+              visualizationMode={visualizationMode}
+              onVisualizationModeChange={setVisualizationMode}
+            />
 
             {/* Calculator Panel */}
-            {showCalculator && (
-              <div className="bg-white rounded-xl shadow-lg border border-slate-200">
-                <div className="p-6 border-b border-slate-200">
-                  <div className="flex items-center space-x-2">
-                    <Calculator className="w-5 h-5 text-blue-600" />
-                    <h2 className="text-xl font-semibold text-slate-900">
-                      Cost Calculator
-                    </h2>
-                  </div>
-                  <p className="text-slate-600 mt-1">
-                    Input JSON cost data for components
-                  </p>
+            <div className="bg-white rounded-xl shadow-lg border border-slate-200">
+              <div className="p-6 border-b border-slate-200">
+                <div className="flex items-center space-x-2">
+                  <Calculator className="w-5 h-5 text-blue-600" />
+                  <h2 className="text-xl font-semibold text-slate-900">
+                    Cost Calculator
+                  </h2>
                 </div>
-                <div className="p-6">
-                  <CostCalculator
-                    costData={costData}
-                    onCostDataChange={handleCostDataChange}
-                  />
-                </div>
+                <p className="text-slate-600 mt-1">
+                  Input JSON cost data for components
+                </p>
               </div>
-            )}
+              <div className="p-6">
+                <CostCalculator
+                  costData={costData}
+                  onCostDataChange={handleCostDataChange}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

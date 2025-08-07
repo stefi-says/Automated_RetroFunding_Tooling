@@ -12,31 +12,31 @@ const CostCalculator: React.FC<CostCalculatorProps> = ({ costData, onCostDataCha
 
   const sampleData = {
     "IE_Governance": {
-      "ObjectivesDesigner": { "total_cost": 1000 },
+      "ObjectivesDesigner": { "total_cost": 1000, "total_hours": 12 },
       "ScopesDesigner": { "total_hours": 12, "hourly_rate": 80 },
       "MeasurementDesigner": { "total_hours": 15, "hourly_rate": 90 },
-      "EvaluationDesigner": { "total_cost": 2000 },
+      "EvaluationDesigner": { "total_cost": 2000, "total_hours": 25 },
       "RewardDesigner": { "total_hours": 8, "hourly_rate": 100 },
-      "Treasury": { "total_cost": 500 }
+      "Treasury": { "total_cost": 500, "total_hours": 6 }
     },
     "Impact": {
       "ImpactProject": { "total_hours": 5, "hourly_rate": 60 },
-      "ImpactScope": { "total_cost": 300 },
+      "ImpactScope": { "total_cost": 300, "total_hours": 4 },
       "ImpactClaim": { "total_hours": 10, "hourly_rate": 50 },
-      "ImpactContributor": { "total_cost": 800 },
+      "ImpactContributor": { "total_cost": 800, "total_hours": 10 },
       "ImpactWork": { "total_hours": 20, "hourly_rate": 45 }
     },
     "Measure": {
       "Measurer": { "total_hours": 6, "hourly_rate": 75 },
-      "Measurement": { "total_cost": 400 }
+      "Measurement": { "total_cost": 400, "total_hours": 5 }
     },
     "Evaluate": {
       "Evaluator": { "total_hours": 8, "hourly_rate": 85 },
-      "EvaluationResult": { "total_cost": 600 }
+      "EvaluationResult": { "total_cost": 600, "total_hours": 8 }
     },
     "Reward": {
       "RewardCalculator": { "total_hours": 12, "hourly_rate": 95 },
-      "RewardAllocation": { "total_cost": 1500 },
+      "RewardAllocation": { "total_cost": 1500, "total_hours": 18 },
       "RewardDistributor": { "total_hours": 4, "hourly_rate": 70 }
     }
   };
