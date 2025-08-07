@@ -12,27 +12,27 @@ import ReactFlow, {
 const getEntityColor = (intensity: number) => {
   if (intensity > 0.7) {
     return {
-      fill: '#fef2f2',
-      stroke: '#ef4444',
-      text: '#991b1b'
+      fill: '#fecaca',
+      stroke: '#dc2626',
+      text: '#7f1d1d'
     };
   } else if (intensity > 0.4) {
     return {
-      fill: '#fffbeb',
-      stroke: '#f59e0b',
-      text: '#92400e'
+      fill: '#fde68a',
+      stroke: '#d97706',
+      text: '#78350f'
     };
   } else if (intensity > 0.1) {
     return {
-      fill: '#eff6ff',
-      stroke: '#3b82f6',
-      text: '#1e40af'
+      fill: '#bfdbfe',
+      stroke: '#2563eb',
+      text: '#1e3a8a'
     };
   }
   return {
-    fill: '#f8fafc',
-    stroke: '#64748b',
-    text: '#475569'
+    fill: '#e2e8f0',
+    stroke: '#475569',
+    text: '#334155'
   };
 };
 
@@ -112,24 +112,24 @@ const SectionNode = ({ data }: { data: SectionNodeData }) => {
   const getColors = (intensity: number) => {
     if (intensity > 0.7) {
       return {
-        background: '#fecaca',
-        border: '#ef4444'
+        background: '#fca5a5',
+        border: '#dc2626'
       };
     } else if (intensity > 0.4) {
       return {
-        background: '#fef3c7',
-        border: '#f59e0b'
+        background: '#fbbf24',
+        border: '#d97706'
       };
     } else {
       return {
-        background: '#dbeafe',
-        border: '#3b82f6'
+        background: '#93c5fd',
+        border: '#2563eb'
       };
     }
   };
 
   const colors = getColors(intensity);
-  const opacity = 0.1 + (intensity * 0.3);
+  const opacity = 0.3 + (intensity * 0.5);
   
   return (
     <div 

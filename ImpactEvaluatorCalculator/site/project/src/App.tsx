@@ -76,19 +76,11 @@ function App() {
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900">MERIter ERD Calculator</h1>
+                <h1 className="text-2xl font-bold text-slate-900">Impact Evaluator Calculator</h1>
                 <p className="text-slate-600">Entity Relationship Diagram Cost Analysis</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-sm text-slate-600">Total System Cost</div>
-                <div className="text-2xl font-bold text-blue-600">
-                  ${calculatedCosts.totalSystem.toLocaleString()}
-                </div>
-              </div>
 
-            </div>
           </div>
         </div>
       </header>
