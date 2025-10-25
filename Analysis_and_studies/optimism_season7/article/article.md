@@ -139,7 +139,6 @@ The analysis revealed high concentration in funding distribution:
 
 Initially, gas fees collected were considered as the impact metric. However, the Dencun upgrade during the analysis period dramatically changed fee dynamics. Sequencer fees dropped to a tiny fraction of previous levels, making cross-period comparisons invalid. Transaction count became the most reliable proxy for protocol usage and impact.
 
-# PAREI AQUI 
 
 **Data Sources**:
 - Project metrics: [Open Source Observer (OSO)](https://www.opensource.observer/)
@@ -161,7 +160,7 @@ Initially, gas fees collected were considered as the impact metric. However, the
 ## Causal Impact Analysis
 
 
-TFP CausalImpact was chosen for this analysis because transaction counts in crypto markets tend to be highly volatile and influenced by numerous external factors, making traditional time series models like SARIMA insufficient for causal inference. While autoregressive models can capture temporal patterns, they cannot account for exogenous variables or directly attribute observed changes to specific interventions such as funding events. In contrast, the Bayesian structural time series framework implemented in TFP CausalImpact incorporates covariates as regressors, enabling the model to control for confounding factors and estimate a robust counterfactual scenario. This approach provides a more reliable way to assess the true causal impact of funding on project activity.
+Traditional time series models like SARIMA are effective for modeling trends and correlations but are not designed for causal inference. They focus on capturing temporal dependencies within the data rather than isolating the effect of specific external events. Since the goal of this analysis was to identify direct causal relationships—such as the impact of funding events on project activity—methods like TFP CausalImpact, based on a Bayesian structural time series framework, were used instead. This approach allows for the inclusion of covariates, control of confounding factors, and estimation of a true counterfactual outcome, providing a more credible measure of causal impact.
 
 
 A log base 10 transformation was tested and found to substantially reduce variance in the time series, improving data stability and enhancing the reliability of the subsequent correlation analysis by minimizing noise. Consequently, all analyses and models presented were conducted using the log-transformed data.
