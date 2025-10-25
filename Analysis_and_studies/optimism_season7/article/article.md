@@ -177,7 +177,7 @@ A log base 10 transformation was tested and found to substantially reduce varian
 To build a robust counterfactual, correlations between Uniswap's daily transaction count and potential predictor variables were analyzed across three periods.
 
 
-![Correlation Matrix - Pre-Treatment](analysis_ntbk_media/uniswap_correlation_analysis.png)
+![Correlation Matrix - Pre-Treatment](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_correlation_analysis.png)
 
 *Figure: Correlation matrix showing relationships between various metrics before treatment*
 
@@ -191,7 +191,7 @@ To build a robust counterfactual, correlations between Uniswap's daily transacti
 **Rolling Correlation Analysis**
 
 
-![Rolling Correlations: Counterfactual Time Series vs Uniswap Transactions](analysis_ntbk_media/uniswap_rolling_60_days_corralation.png)
+![Rolling Correlations: Counterfactual Time Series vs Uniswap Transactions](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_rolling_60_days_corralation.png)
 
 *Figure: 60-day rolling correlations between Uniswap transaction count and potential predictor variables over time*
 
@@ -223,7 +223,7 @@ To check stability over time, I computed rolling correlations (7-day, 30-day, 60
 
 ## Causal Impact Analysis Results
 
-![Uniswap Log-Transformed Causal Impact Analysis](analysis_ntbk_media/uniswap_log_transformed_causal_impact_fit.png)
+![Uniswap Log-Transformed Causal Impact Analysis](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_log_transformed_causal_impact_fit.png)
 
 *Figure: Causal impact analysis showing observed vs predicted Uniswap transaction counts (log-transformed) with pointwise and cumulative effects*
 
@@ -278,7 +278,7 @@ Given potential non-normality in the data, multiple transformations were tested 
 Box-Cox transformation applies a power transformation to stabilize variance and make the data more normally distributed. Maximum likelihood estimation (MLE) was used to find optimal λ (lambda) parameters.
 
 
-![Box-Cox Transformation Distribution of Variables](analysis_ntbk_media/uniswap_boxcox_transformation_distribution_of_variables.png)
+![Box-Cox Transformation Distribution of Variables](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_boxcox_transformation_distribution_of_variables.png)
 
 *Figure: Original distributions (left) and Box-Cox transformed distributions (right) for key variables*
 
@@ -293,7 +293,7 @@ Box-Cox transformation applies a power transformation to stabilize variance and 
 
 **Box-Cox Results:**
 
-![Uniswap Box-Cox Transformed Causal Impact Analysis](analysis_ntbk_media/uniswap_boxcox_transformed_fit.png)
+![Uniswap Box-Cox Transformed Causal Impact Analysis](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_boxcox_transformed_fit.png)
 
 *Figure: Causal impact analysis using Box-Cox transformed data showing observed vs predicted Uniswap transaction counts with pointwise and cumulative effects*
 
@@ -387,9 +387,9 @@ Based on the Box-Cox transformation, it was applied to all subsequent analyses t
 
 **Residual Analysis (Box-Cox Model)**
 
-![Residuals Over Time](analysis_ntbk_media/uniswap_residuals_overtime.png)
+![Residuals Over Time](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_residuals_overtime.png)
 
-![ACF of Residuals](analysis_ntbk_media/uniswap_boxcox_acf_residuals.png)
+![ACF of Residuals](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/uniswap_boxcox_acf_residuals.png)
 
 *Figure: Model diagnostics showing residuals over time (top) and autocorrelation function of residuals (bottom)*
 
@@ -460,7 +460,7 @@ Following the same methodology for Aerodrome Finance:
 
 **Pre-treatment correlations Analysis:**
 
-![Correlation Matrix - Pre-Treatment for Aerodrome](analysis_ntbk_media/erodrome_correlation_analysis.png)
+![Correlation Matrix - Pre-Treatment for Aerodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/erodrome_correlation_analysis.png)
 
 *Figure: Correlation matrix showing relationships between Aerodrome and various metrics before treatment*
 
@@ -492,7 +492,7 @@ Optimal λ values:
 
 **Causal Impact Results:**
 
-![Aerodrome Box-Cox Transformed Causal Impact Analysis](analysis_ntbk_media/aerodrome_boxcox_transformed_bestift.png)
+![Aerodrome Box-Cox Transformed Causal Impact Analysis](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/aerodrome_boxcox_transformed_bestift.png)
 
 *Figure: Causal impact analysis showing observed vs predicted Aerodrome transaction counts with pointwise and cumulative effects*
 
@@ -535,9 +535,9 @@ Posterior prob. of a causal effect: 78.25%
 
 **Residual Analysis (Box-Cox Model):**
 
-![Residuals Over Time for Aerodrome](analysis_ntbk_media/aerodrome_bestfit_residuals.png)
+![Residuals Over Time for Aerodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/aerodrome_bestfit_residuals.png)
 
-![ACF of Residuals for Aerodrome](analysis_ntbk_media/aerodrome_acf_residuals_analysis.png)
+![ACF of Residuals for Aerodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/aerodrome_acf_residuals_analysis.png)
 
 *Figure: Model diagnostics for Aerodrome showing residuals over time (top) and autocorrelation function of residuals (bottom)*
 
@@ -568,7 +568,7 @@ Following the same methodology for Velodrome:
 
 **Pre-treatment correlations Analysis:**
 
-![Correlation Matrix - Pre-Treatment for Velodrome](analysis_ntbk_media/velodrome_correlation_analysis.png)
+![Correlation Matrix - Pre-Treatment for Velodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/velodrome_correlation_analysis.png)
 
 *Figure: Correlation matrix showing relationships between Velodrome and various metrics before treatment*
 
@@ -596,7 +596,7 @@ Following the same methodology for Velodrome:
 
 **Causal Impact Results:**
 
-![Velodrome Causal Impact Analysis](analysis_ntbk_media/Velodrome_bestfit.png)
+![Velodrome Causal Impact Analysis](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/Velodrome_bestfit.png)
 
 *Figure: Causal impact analysis showing observed vs predicted Velodrome transaction counts with pointwise and cumulative effects*
 
@@ -636,9 +636,9 @@ Posterior prob. of a causal effect: 64.15%
 
 **Residual Analysis (Box-Cox Model):**
 
-![Residuals Over Time for Velodrome](analysis_ntbk_media/velodrome_bestfit_residuals.png)
+![Residuals Over Time for Velodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/velodrome_bestfit_residuals.png)
 
-![ACF of Residuals for Velodrome](analysis_ntbk_media/velodrome_bestfit_acf_residuals.png)
+![ACF of Residuals for Velodrome](https://raw.githubusercontent.com/stefi-says/Automated_RetroFunding_Tooling/main/Analysis_and_studies/optimism_season7/article/analysis_ntbk_media/velodrome_bestfit_acf_residuals.png)
 
 *Figure: Model diagnostics for Velodrome showing residuals over time (top) and autocorrelation function of residuals (bottom)*
 
