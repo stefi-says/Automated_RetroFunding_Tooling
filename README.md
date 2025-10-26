@@ -13,12 +13,18 @@ I'm exploring **RetroPGF (Retroactive Public Goods Funding)**, a creative fundin
 ### Research Components
 
 ```
-📁 problenm_space_exploration/
+📁 problem_space_exploration/
 ├── 📄 interviews_public_notes.md      # Stakeholder informal interviews and insights
 ├── 📄 public_notes_on_studies.md      
 ├── 📁 images/
 └── 📁 other_resources/
     └── 📄 filecoin_round2_extra_info   
+
+📁 Analysis_and_studies/
+└── 📁 optimism_season7/
+    └── 📁 Measuring_OnChain_Impact_of_RetroPGF_Season_7/
+        ├── 📄 Measuring_OnChain_Impact_of_RetroPGF_Season_7.md  # Full exploratory analysis
+        ├── 📁 analysis_ntbk_media/ #Supporting visualizations                            
 ```
 
 ### What I've Researched So Far
@@ -30,6 +36,21 @@ I'm exploring **RetroPGF (Retroactive Public Goods Funding)**, a creative fundin
 - **💛 Celo** 
 
 All the resources can be found on the issue [Reading List - RetroFunding](https://github.com/stefi-says/onchain_recurrent_rewards/issues/6)
+
+### 📊 Published Analyses
+
+#### Measuring On-Chain Impact of RetroPGF Season 7
+An exploratory causal analysis examining whether Optimism's RetroPGF Season 7 funding caused measurable increases in on-chain transaction activity for top-funded DEX projects (Uniswap, Aerodrome, Velodrome).
+
+**Status:** 🚧 Ongoing - Currently collecting feedback
+
+**Key Findings:**
+- Applied Bayesian Structural Time Series (BSTS) models to detect causal impact
+- No statistically significant effects detected (p-values: 0.20-0.36)
+- Results highlight methodological challenges and data requirements for impact measurement in crypto
+- All code, data, and methodology shared openly for community learning
+
+📖 [Read the full analysis](./Analysis_and_studies/optimism_season7/Measuring_OnChain_Impact_of_RetroPGF_Season_7/Measuring_OnChain_Impact_of_RetroPGF_Season_7.md)
 
 
 ## 🚀 Project Roadmap
