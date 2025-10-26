@@ -9,3 +9,9 @@
 ## Confounding studies 
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC6447501
 - https://www.mdpi.com/2076-3417/14/9/3662
+
+---
+
+## 📄 License
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
