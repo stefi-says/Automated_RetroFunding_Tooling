@@ -12,6 +12,61 @@ This directory contains a comprehensive causal analysis of three top-funded DEX 
 
 - **[Measuring_OnChain_Impact_of_RetroPGF_Season_7.md](./Measuring_OnChain_Impact_of_RetroPGF_Season_7.md)** - Full analysis document with methodology, findings, and interpretations
 - **analysis_ntbk_media/** - Supporting visualizations and charts
+
+---
+
+## 📦 Data Availability
+
+The raw data files used in this analysis are publicly available and can be accessed here:
+
+**[📁 Download Data Files](https://drive.google.com/drive/folders/1CLqYmwwEN02HSdF6B9n2lM8wEwjHuMYT?usp=sharing)**
+
+**To use the data:**
+1. Download the necessary data files from the Google Drive folder
+2. Place them in the `data/` directory of this project
+3. The analysis notebooks will reference these files from that location
+
+**Available datasets include:**
+- `balancer_metrics.parquet` - Balancer DEX transaction metrics
+- `chain_metrics.parquet` - Optimism chain-level metrics
+- `curve_metrics.parquet` - Curve DEX transaction metrics
+- `eth_price_market_cap_volume.csv` - Ethereum market data
+- `eth_txcount.csv` - Ethereum transaction counts
+- `merged_data_boxcox.parquet` - Box-Cox transformed merged dataset
+- `raw_merged_data.parquet` - Raw merged dataset for analysis
+- `recipients_and_grants.csv` - RetroPGF Season 7 recipients and grant amounts
+- And more...
+
+---
+
+## ⚙️ Environment Setup
+
+**⚠️ Important: This analysis requires a dedicated virtual environment due to package compatibility issues.**
+
+The analysis uses TensorFlow Probability's `tfp-causalimpact` package, which has specific version requirements for TensorFlow and related dependencies. Running this analysis in your global Python environment may cause conflicts with other projects.
+
+**Setup Instructions:**
+
+1. A pre-configured virtual environment is available in the `causal_impact_env/` directory
+2. For detailed setup instructions, see: [**VENV_SETUP_README.md**](../../VENV_SETUP_README.md)
+3. This guide includes step-by-step instructions for:
+   - Creating and activating the virtual environment
+   - Installing required packages (`tfp-causalimpact`, `tf-keras`, etc.)
+   - Configuring Jupyter kernel for notebook integration
+   - Troubleshooting common issues
+
+**Quick Start:**
+```powershell
+# Navigate to the optimism_season7 directory
+cd Analysis_and_studies/optimism_season7
+
+# Activate the virtual environment (Windows)
+.\causal_impact_env\Scripts\Activate.ps1
+
+# Open Jupyter notebooks with the correct kernel
+jupyter notebook
+```
+
 ---
 
 ## 🎯 Research Objective
